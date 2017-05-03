@@ -6,7 +6,7 @@ try:
     import phonenumbers
     from phonenumbers import geocoder, PhoneNumberType
 except:
-    sys.stderr.write('Could not find module "phonenumbers".\nTry `pip install phonumbers`.\n')
+    sys.stderr.write('Could not find module "phonenumbers".\nTry `pip3 install phonenumbers`.\n')
 
 if len(sys.argv) > 1:
     nums = sys.argv[1:]
