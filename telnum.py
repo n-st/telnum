@@ -11,6 +11,9 @@ except:
 
 def number_to_text(num):
     try:
+        if not num.startswith('+'):
+            num = '+' + num
+
         x = phonenumbers.parse(num)
 
         def number_type_desc(num_type):
