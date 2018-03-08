@@ -7,7 +7,7 @@ try:
     import phonenumbers
     from phonenumbers import geocoder, PhoneNumberType
 except:
-    sys.stderr.write('Could not find module "phonenumbers".\nTry `pip3 install phonenumbers`.\n')
+    raise Exception('Could not find module "phonenumbers".\nTry `pip3 install phonenumbers`.\n')
 
 def number_to_text(num):
     try:
