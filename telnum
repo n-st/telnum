@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# encoding: utf-8 (as per PEP 263)
 
 import sys
 
@@ -8,13 +9,7 @@ try:
 except:
     sys.stderr.write('Could not find module "phonenumbers".\nTry `pip3 install phonenumbers`.\n')
 
-if len(sys.argv) > 1:
-    nums = sys.argv[1:]
-else:
-    nums = sys.stdin.readlines()
-    nums = map(strip, nums)
-
-for num in nums:
+def number_to_text(num):
     try:
         x = phonenumbers.parse(num)
 
@@ -38,7 +33,7 @@ for num in nums:
             elif num_type == PhoneNumberType.PAGER:
                 return 'pager'
             elif num_type == PhoneNumberType.UAN:
-                return 'company "universalaccess number"'
+                return 'company "universal access number"'
             elif num_type == PhoneNumberType.VOICEMAIL:
                 return 'voicemail'
             else:
@@ -50,9 +45,22 @@ for num in nums:
         desc = geocoder.description_for_number(x, "en")
 
         if not desc or desc == country:
-            print('%s\n%s - %s' % (number, country, numtype))
+            return '%s\n%s - %s' % (number, country, numtype)
         else:
-            print('%s\n%s, %s - %s' % (number, desc, country, numtype))
+            return '%s\n%s, %s - %s' % (number, desc, country, numtype)
 
     except:
-        print('%s\ninvalid' % (num))
+        return '%s\ninvalid' % (num)
+
+def main():
+    if len(sys.argv) > 1:
+        nums = sys.argv[1:]
+    else:
+        nums = sys.stdin.readlines()
+        nums = map(strip, nums)
+
+    for num in nums:
+        print(number_to_text(num))
+
+if __name__ == '__main__':
+    main()
