@@ -53,7 +53,7 @@ def number_to_text(num):
             return '%s\n%s, %s - %s' % (number, desc, country, numtype)
 
     except:
-        return '%s\ninvalid' % (num)
+        return '%sinvalid' % (num)
 
 def main():
     if len(sys.argv) > 1:
