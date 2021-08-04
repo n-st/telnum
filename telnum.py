@@ -13,6 +13,8 @@ def number_to_text(num):
     try:
         if not num.startswith('+'):
             num = '+' + num
+        if not num.endswith('\n'):  # last line
+            num = num + '\n'
 
         x = phonenumbers.parse(num)
 
